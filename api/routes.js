@@ -19,7 +19,7 @@ router.get("/tasks", (req, res) => {
   res.json(taskList);
 })
 
-//GET POR ID
+//GET POR ID -- melhorar aqui
 router.get("/tasks/:id", (req, res) => {
   const { id } = req.params;
   //tenho que verificar se meu array tem um id igual
@@ -49,9 +49,39 @@ router.post("/tasks", (req, res) => {
 });
 
 //PUT 
+router.put("/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, content, status } = req.body;
+
+  const taskFound = taskList.find(task => task.id === id);
+
+  if (title != null) {
+    taskFound.title = title;
+  }
+  if (content != null) {
+    taskFound.status = status;
+  };
+
+  res.json({ message: `Tarefa com o ${id} foi atualizada`, taskFound });
+
+})
 
 
 //DELETE
+router.delete("/tasks/:id", (req, res) => {
+  const { id } = req.params;
 
+  //encontrando o indíce da task 
+  const index = taskList.findIndex(task => task.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Tarefa não encontrada." });
+  }
+
+  //excluindo
+  taskList.splice(index, 1);
+
+  return res.status(204).send();
+});
 
 module.exports = router;
