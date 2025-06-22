@@ -29,7 +29,7 @@ Cada tarefa é estruturada da seguinte maneira:
 2. Acesse a pasta do projeto:
 
     ```bash
-    cd api
+    cd projeto1-api-aprofunda/api
     ```
 
 3. Instale as dependências:
