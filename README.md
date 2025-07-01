@@ -35,59 +35,128 @@ Cada tarefa é estruturada da seguinte maneira:
 3. Instale as dependências:
 
     ```bash
-      npm install
+    npm install
     ```
 
 4. Inicie o servidor: 
 
     ```bash
-      npm start
+    npm start
     ```
 5. Para testar as rotas utilize ferramentas como: ThunderClient ou Postman e faça as requisições que desejar para testar os endpoints da API. 
 
 
 ---
 
-## 🔗 Rotas da API
+## 🔗 Exemplos de Requisição
 
-### ✅ Listar todas as tarefas
-`GET /tasks`
+### ✅ Listar todas as tarefas | `GET /tasks`
 
-![alt text](/assets/getTasks.png)
+**Requisição:**
+````
+GET http://localhost:3000/tasks
+````
 
-### 🔍 Buscar uma tarefa por ID
-`GET /tasks/:id`
+**Resposta:**
+```json 
+[]
+```
 
-![alt text](/assets/getTasksId.png)
+### ➕ Criar uma nova tarefa | `POST /tasks`
 
-### ➕ Criar uma nova tarefa
-`POST /tasks`
+**Requisição:**
+````
+POST http://localhost:3000/tasks
+````
 
-Body (JSON):
+Corpo (Body):
 
-![alt text](/assets/bodyPostTasks.png)
+```json
+  {
+    "title": "Aprofunda | Pretalab",
+    "content": "Entrega do Projeto Guiado",
+    "status": "Em Andamento"
+  }
+```
 
-Resposta:
+**Resposta:**
+```json
+{
+  "message": "A tarefa com o título: Aprofunda | Pretalab foi criada com sucesso!",
+  "task": {
+      "id": "1c2da18e-cf5b-4dd4-b631-695a85eaecd4",
+      "title": "Aprofunda | Pretalab",
+      "content": "Entrega do Projeto Guiado",
+      "date": "01/07/2025",
+      "status": "Em Andamento"
+    }
+}
+```
 
-![alt text](/assets/postTasks.png)
+### 🔍 Buscar uma tarefa por ID | `GET /tasks/:id`
 
-### ✏️ Atualizar uma tarefa
-`PUT /tasks/:id`
+**Requisição:**
+````
+GET http://localhost:3000/tasks/1c2da18e-cf5b-4dd4-b631-695a85eaecd4
+````
 
-Body (JSON):
+**Resposta:**
 
-![alt text](/assets/bodyPutTasks.png)
+```json
+{
+  "id": "1c2da18e-cf5b-4dd4-b631-695a85eaecd4",
+  "title": "Aprofunda | Pretalab",
+  "content": "Entrega do Projeto Guiado",
+  "date": "01/07/2025",
+  "status": "Em Andamento"
+}
+```
 
-Resposta:
 
-![alt text](/assets/putTasks.png)
+### ✏️ Atualizar uma tarefa | `PUT /tasks/:id`
 
-### 🗑️ Deletar uma tarefa
-`DELETE /tasks/:id`
+**Requisição:**
+````
+PUT http://localhost:3000/tasks/1c2da18e-cf5b-4dd4-b631-695a85eaecd4
+````
 
-Resposta:
+Corpo (Body):
 
-![alt text](/assets/deleteTasks.png)
+```json
+{
+  "title": "Projeto Guiado 1 API",
+  "content": "Codificar o Projeto Guiado do Módulo 1",
+  "status": "Em Andamento"
+}
+```
+
+**Resposta:**
+
+```json
+{
+  "message": "Tarefa com o id: 1c2da18e-cf5b-4dd4-b631-695a85eaecd4 foi atualizada.",
+  "task": {
+    "id": "1c2da18e-cf5b-4dd4-b631-695a85eaecd4",
+    "title": "Projeto Guiado 1 API",
+    "content": "Codificar o Projeto Guiado do Módulo 1",
+    "date": "01/07/2025",
+    "status": "Em Andamento"
+  }
+}
+```
+
+### 🗑️ Deletar uma tarefa | `DELETE /tasks/:id`
+
+**Requisição:**
+````
+DELETE http://localhost:3000/tasks/1c2da18e-cf5b-4dd4-b631-695a85eaecd4
+````
+
+**Resposta:**
+
+```json
+204 NO CONTENT
+```
 
 ---
 
